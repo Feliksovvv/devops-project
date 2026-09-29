@@ -1,0 +1,7 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: devops_web
+    ports:
+      - "8080:80"
+
