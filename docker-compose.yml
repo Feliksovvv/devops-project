@@ -4,5 +4,24 @@ services:
     container_name: devops_app
     ports:
       - "8080:8000"
+    environment:
+      - DATABASE_URL=postgresql://devuser:devpassword@db:5432/devdb
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    container_name: devops_db
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: devdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
 
 
